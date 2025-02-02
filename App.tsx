@@ -25,9 +25,19 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import 'react-native-gesture-handler';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
+
+// In App.tsx componentDidMount or similar
+GoogleSignin.configure({
+  webClientId: 'YOUR_WEB_CLIENT_ID', // From Google Cloud Console
+  iosClientId: 'YOUR_IOS_CLIENT_ID', // From Google Cloud Console
+});
+
 
 function Section({children, title}: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';

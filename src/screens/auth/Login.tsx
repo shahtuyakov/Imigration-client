@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { 
-  GoogleSignin,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
-import appleAuth from '@invertase/react-native-apple-authentication';
-import { login, socialLogin } from '../../store/slices/authSlice';
-import { Button, Input } from '../../components/common';
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Button, Input, Card } from '../../components/common';
+import { useAppDispatch } from '../../store/hooks';
+import { login } from '../../store/slices/authSlice';
+import { AuthStackParamList } from '../../navigation/types';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { appleAuth } from '@invertase/react-native-apple-authentication';
 
-const LoginScreen = ({ navigation }: { navigation: any }) => {
-  const dispatch = useDispatch();
+type LoginScreenNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'Login'>;
+
+export const Login = () => {
+  const navigation = useNavigation<LoginScreenNavigationProp>();
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleLogin = async () => {
     try {
       setLoading(true);
+      setError('');
       await dispatch(login({ email, password })).unwrap();
-    } catch (error) {
-      Alert.alert('Error', error.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -28,87 +33,107 @@ const LoginScreen = ({ navigation }: { navigation: any }) => {
 
   const handleGoogleLogin = async () => {
     try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      await dispatch(socialLogin({
-        provider: 'google',
-        token: userInfo.idToken
-      })).unwrap();
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // handle cancelled
-      } else {
-        Alert.alert('Error', error.message);
-      }
+      setLoading(true);
+      const { idToken } = await GoogleSignin.signIn();
+      await dispatch(googleLogin(idToken)).unwrap();
+    } catch (err) {
+      setError('Google login failed');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleAppleLogin = async () => {
     try {
-      const appleAuthRequestResponse = await appleAuth.performRequest({
+      setLoading(true);
+      const { identityToken } = await appleAuth.performRequest({
         requestedOperation: appleAuth.Operation.LOGIN,
         requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
       });
-
-      await dispatch(socialLogin({
-        provider: 'apple',
-        token: appleAuthRequestResponse.identityToken
-      })).unwrap();
-    } catch (error) {
-      Alert.alert('Error', error.message);
+      await dispatch(appleLogin(identityToken)).unwrap();
+    } catch (err) {
+      setError('Apple login failed');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Input
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <Input
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <Button 
-        title="Login" 
-        onPress={handleLogin} 
-        loading={loading}
-      />
-      <Button 
-        title="Continue with Google" 
-        onPress={handleGoogleLogin}
-      />
-      {appleAuth.isSupported && (
-        <Button 
-          title="Continue with Apple" 
-          onPress={handleAppleLogin}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      <Card variant="elevated" style={styles.card}>
+        <Input
+          label="Email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoComplete="email"
         />
-      )}
-      <Button 
-        title="Sign Up" 
-        onPress={() => navigation.navigate('SignUp')}
-        type="outline"
-      />
-      <Button 
-        title="Forgot Password?" 
-        onPress={() => navigation.navigate('ForgotPassword')}
-        type="text"
-      />
-    </View>
+        
+        <Input
+          label="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          autoComplete="password"
+        />
+
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+
+        <Button
+          title="Login"
+          onPress={handleLogin}
+          loading={loading}
+          disabled={!email || !password}
+        />
+
+        <Button
+          title="Forgot Password?"
+          variant="outline"
+          onPress={() => navigation.navigate('ForgotPassword')}
+          style={styles.forgotButton}
+        />
+
+        <View style={styles.socialButtons}>
+          <Button
+            title="Continue with Google"
+            variant="outline"
+            onPress={handleGoogleLogin}
+            style={styles.socialButton}
+          />
+          {Platform.OS === 'ios' && (
+            <Button
+              title="Continue with Apple"
+              variant="outline"
+              onPress={handleAppleLogin}
+              style={styles.socialButton}
+            />
+          )}
+        </View>
+      </Card>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center',
-  },
-});
-
-export default LoginScreen;
+    container: {
+      flex: 1,
+      backgroundColor: '#F7F7F7',
+      justifyContent: 'center',
+    },
+    card: {
+      margin: 24,
+    },
+    error: {
+      color: '#FF3B30',
+      fontSize: 14,
+      marginBottom: 16,
+      textAlign: 'center',
+    },
+    forgotButton: {
+      marginTop: 16,
+    },
+  });

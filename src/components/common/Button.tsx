@@ -1,44 +1,43 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ActivityIndicator, ViewStyle, TextStyle } from 'react-native';
 
 interface ButtonProps {
-  title: string;
   onPress: () => void;
-  type?: 'solid' | 'outline' | 'text';
-  loading?: boolean;
+  title: string;
+  variant?: 'primary' | 'secondary' | 'outline';
   disabled?: boolean;
+  loading?: boolean;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
+  accessibilityLabel?: string;
+  testID?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  title,
+export const Button = ({
   onPress,
-  type = 'solid',
-  loading = false,
+  title,
+  variant = 'primary',
   disabled = false,
-}) => {
-  const buttonStyle = [
-    styles.button,
-    type === 'outline' && styles.outlineButton,
-    type === 'text' && styles.textButton,
-    disabled && styles.disabled,
-  ];
-
-  const textStyle = [
-    styles.text,
-    type === 'outline' && styles.outlineText,
-    type === 'text' && styles.textButtonText,
-  ];
-
+  loading = false,
+  style,
+  textStyle,
+  accessibilityLabel,
+  testID,
+}: ButtonProps) => {
   return (
     <TouchableOpacity
-      style={buttonStyle}
       onPress={onPress}
       disabled={disabled || loading}
+      style={[styles.button, styles[variant], disabled && styles.disabled, style]}
+      accessibilityLabel={accessibilityLabel || title}
+      accessibilityRole="button"
+      accessibilityState={{ disabled, busy: loading }}
+      testID={testID}
     >
       {loading ? (
-        <ActivityIndicator color={type === 'solid' ? '#fff' : '#007AFF'} />
+        <ActivityIndicator color={variant === 'outline' ? '#007AFF' : '#FFFFFF'} />
       ) : (
-        <Text style={textStyle}>{title}</Text>
+        <Text style={[styles.text, styles[`${variant}Text`], textStyle]}>{title}</Text>
       )}
     </TouchableOpacity>
   );
@@ -46,33 +45,37 @@ export const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    height: 48,
+    padding: 16,
     borderRadius: 8,
-    backgroundColor: '#007AFF',
-    justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 8,
+    justifyContent: 'center',
+    minHeight: 48,
   },
-  outlineButton: {
+  primary: {
+    backgroundColor: '#007AFF',
+  },
+  secondary: {
+    backgroundColor: '#5856D6',
+  },
+  outline: {
     backgroundColor: 'transparent',
     borderWidth: 1,
     borderColor: '#007AFF',
-  },
-  textButton: {
-    backgroundColor: 'transparent',
   },
   disabled: {
     opacity: 0.5,
   },
   text: {
-    color: '#fff',
     fontSize: 16,
     fontWeight: '600',
   },
-  outlineText: {
-    color: '#007AFF',
+  primaryText: {
+    color: '#FFFFFF',
   },
-  textButtonText: {
+  secondaryText: {
+    color: '#FFFFFF',
+  },
+  outlineText: {
     color: '#007AFF',
   },
 });

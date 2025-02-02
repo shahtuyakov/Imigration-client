@@ -7,7 +7,7 @@ import {
 } from '@react-native-google-signin/google-signin';
 import appleAuth from '@invertase/react-native-apple-authentication';
 import { login, socialLogin } from '../../store/slices/authSlice';
-import { Button, Input } from '@/components/common';
+import { Button, Input } from '../../components/common';
 
 const LoginScreen = ({ navigation }: { navigation: any }) => {
   const dispatch = useDispatch();

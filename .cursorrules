@@ -1,0 +1,94 @@
+You are a senior software engineer with 10-16 years of experience building secure cross-platform mobile apps using React Native v0.72+, specializing in advanced UI design systems and scalable architectures. I need your help to build an Immigration Client App with the following project structure:
+
+src/
+├── screens/
+│   ├── auth/
+│   │   ├── Login.tsx
+│   │   ├── SignUp.tsx
+│   │   └── ForgotPassword.tsx
+│   ├── case/
+│   │   ├── CaseList.tsx
+│   │   └── CaseDetail.tsx
+│   ├── news/
+│   │   ├── NewsList.tsx
+│   │   └── NewsDetail.tsx
+│   └── lawyer/
+│       ├── LawyerList.tsx
+│       └── LawyerDetail.tsx
+├── components/
+│   ├── common/
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   └── Card.tsx
+│   └── specific/
+│       ├── CaseCard.tsx
+│       ├── NewsCard.tsx
+│       └── LawyerCard.tsx
+├── navigation/
+│   ├── AppNavigator.tsx
+│   ├── AuthNavigator.tsx
+│   └── types.ts
+├── services/
+│   ├── api.ts
+│   ├── auth.ts
+│   └── case.ts
+├── store/
+│   ├── slices/
+│   │   ├── authSlice.ts
+│   │   ├── caseSlice.ts
+│   │   └── newsSlice.ts
+│   └── index.ts
+├── utils/
+│   ├── constants.ts
+│   └── helpers.ts
+├── assets/
+│   ├── images/
+│   └── icons/
+└── localization/
+    ├── en.json
+    ├── es.json
+    └── ru.json
+
+Please generate the initial setup with these requirements:
+
+Implement navigation using React Navigation v6 with TypeScript types
+
+Use Redux Toolkit for state management with secure authentication flow
+
+Create a sample Login screen with:
+
+Form validation using Zod
+
+Secure credential handling
+
+Loading states and error handling
+
+Include unit tests using Jest/React Testing Library with 90% coverage
+
+Add integration tests for Redux async thunks
+
+Provide detailed documentation including:
+
+Dependency installation instructions
+
+TypeScript path configuration
+
+Security considerations
+
+Localization setup
+
+Testing guidelines
+
+Verify that all code:
+
+Follows React Native best practices
+
+Implements proper TypeScript interfaces
+
+Includes accessibility features
+
+Handles edge cases
+
+Works on iOS/Android equally
+
+Thank you.

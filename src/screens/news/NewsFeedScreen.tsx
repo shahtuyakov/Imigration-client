@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { View, FlatList, RefreshControl, StyleSheet, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchNews, searchNews } from '../../store/slices/newsSlice.ts';
+import { fetchNews, searchNews } from '../../store/slices/newsSlice';
+import { sampleNewsArticles } from '../../data/sampleNews';
 import NewsSearchHeader from '../../components/news/NewsSearchHeader';
 import NewsCategoryTabs from '../../components/news/NewsCategoryTabs';
 import NewsArticleCard from '../../components/news/NewsArticleCard';
@@ -13,18 +14,23 @@ export default function NewsFeedScreen() {
   const [selectedCategory, setSelectedCategory] = useState<NewsCategory>('for-you');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const dispatch = useDispatch();
-  const { articles, isLoading } = useSelector((state: RootState) => state.news);
+  const [articles, setArticles] = useState(sampleNewsArticles);
   const theme = useTheme();
 
   const handleRefresh = useCallback(async () => {
     setIsRefreshing(true);
-    await dispatch(fetchNews(selectedCategory));
-    setIsRefreshing(false);
-  }, [dispatch, selectedCategory]);
+    setTimeout(() => {
+      setArticles(sampleNewsArticles);
+      setIsRefreshing(false);
+    }, 1000);
+  }, []);
 
   const handleSearch = useCallback((query: string) => {
-    dispatch(searchNews(query));
-  }, [dispatch]);
+    const filtered = sampleNewsArticles.filter(article =>
+      article.title.toLowerCase().includes(query.toLowerCase())
+    );
+    setArticles(filtered);
+  }, []);
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -39,7 +45,7 @@ export default function NewsFeedScreen() {
       <FlatList
         data={articles}
         renderItem={({ item }) => <NewsArticleCard article={item} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.articleId}
         refreshControl={
           <RefreshControl
             refreshing={isRefreshing}

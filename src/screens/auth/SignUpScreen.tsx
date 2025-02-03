@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Formik } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { AuthScreenProps } from '../../navigation/types';
 import { Button, Input, Text } from '../../components/common';
@@ -75,7 +75,7 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
               value={values.email}
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
-              error={touched.email ? t(errors.email) : undefined}
+              error={touched.email ? t(errors.email as string) : undefined}
               keyboardType="email-address"
               autoCapitalize="none"
             />
@@ -85,7 +85,7 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
               value={values.password}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
-              error={touched.password ? t(errors.password) : undefined}
+              error={touched.password ? t(errors.password as string) : undefined}
               secureTextEntry
             />
 
@@ -94,7 +94,7 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
               value={values.confirmPassword}
               onChangeText={handleChange('confirmPassword')}
               onBlur={handleBlur('confirmPassword')}
-              error={touched.confirmPassword ? t(errors.confirmPassword) : undefined}
+              error={touched.confirmPassword ? t(errors.confirmPassword as string) : undefined}
               secureTextEntry
             />
 

@@ -58,7 +58,7 @@ export function AppNavigator() {
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         {isLoading ? (
           <RootStack.Screen name="Loading" component={LoadingScreen} />
-        ) : isAuthenticated ? (
+        ) : true ? (
           <RootStack.Screen name="BottomTabs" component={BottomTabNavigator} />
         ) : (
           <>

@@ -9,6 +9,7 @@ import { useTheme } from '../../theme/hooks/useTheme';
 import { NavigationProp } from '@react-navigation/native';
 import { useEffect } from 'react';
 import { RootState } from '../../store/types';
+import { useAuthState } from '../../hooks/useAuthState';
 
 interface LoginScreenProps {
   navigation: NavigationProp<any>;
@@ -18,7 +19,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const { error, loading } = useAuthError();
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated } = useAuthState();
 
   const handleGoogleSignIn = async () => {
     await dispatch(googleSignIn() as any);

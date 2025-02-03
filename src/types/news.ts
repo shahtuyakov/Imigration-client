@@ -1,16 +1,20 @@
+export type NewsCategory = 'for-you' | 'latest' | 'immigration' | 'legal' | 'policy';
+
 export interface NewsArticle {
-    title: string;
-    source: {
-      name: string;
-      logo?: string;
-    };
-    publishedAt: string;
-    thumbnail?: string;
-    metrics: {
-      likes: number;
-      dislikes: number;
-      comments: number;
-    };
-  }
-  
-export type NewsCategory = 'for-you' | 'local' | 'top-stories';
+  articleId: string;
+  title: string;
+  summary: string;
+  content: string;
+  source: {
+    name: string;
+    logo: string;
+  };
+  publishedAt: string;
+  imageUrl: string;
+  category: NewsCategory;
+  metrics: {
+    views: number;
+    shares: number;
+    comments: number;
+  };
+}

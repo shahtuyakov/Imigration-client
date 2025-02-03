@@ -40,6 +40,14 @@ export const appleSignIn = createAsyncThunk(
   }
 );
 
+export const checkAuthStatus = createAsyncThunk(
+  'auth/checkStatus',
+  async () => {
+    // TODO: Implement actual auth check logic
+    return false;
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -85,6 +93,18 @@ const authSlice = createSlice({
       .addCase(appleSignIn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+      // Check Auth Status
+      .addCase(checkAuthStatus.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(checkAuthStatus.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isAuthenticated = action.payload;
+      })
+      .addCase(checkAuthStatus.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Authentication check failed';
       });
   },
 });

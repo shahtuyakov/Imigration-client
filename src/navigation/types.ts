@@ -1,5 +1,6 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { NavigationProp, RouteProp } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -10,10 +11,13 @@ export type RootStackParamList = {
 };
 
 export type AuthStackParamList = {
+  [key: string]: undefined | object;  // Add index signature
   AuthOptions: undefined;
   EmailLogin: undefined;
   GoogleLogin: undefined;
   AppleLogin: undefined;
+  SignUp: undefined;
+  Login: undefined;
   VerifyEmail: { email: string };
 };
 
@@ -29,8 +33,7 @@ export type BottomTabsParamList = {
   Profile: undefined;
 };
 
-export type AuthScreenProps<T extends keyof AuthStackParamList> = 
-  NativeStackScreenProps<AuthStackParamList, T>;
+export type AuthScreenProps<T extends keyof AuthStackParamList> = NativeStackScreenProps<AuthStackParamList, T>;
 
 export type GuestTabScreenProps<T extends keyof GuestTabsParamList> = 
   BottomTabScreenProps<GuestTabsParamList, T>;

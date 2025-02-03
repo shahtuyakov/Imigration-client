@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { colors } from '../../theme/colors';
 import { spacing } from '../../theme/spacing';
 
-interface SignUpScreenProps extends AuthScreenProps<'SignUpScreen'> {}
+interface SignUpScreenProps extends AuthScreenProps<'SignUp'> {}
 
 interface SignUpFormValues {
   email: string;
@@ -106,19 +106,17 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
 
             <Button
               onPress={handleSubmit}
-              loading={isLoading}
+              isLoading={isLoading}
+              title={t('auth:signUp')}
               style={styles.button}
-            >
-              {t('auth:signUp')}
-            </Button>
+            />
 
             <Button
-              variant="text"
+              variant="outline"
               onPress={() => navigation.navigate('Login')}
+              title={t('auth:alreadyHaveAccount')}
               style={styles.loginLink}
-            >
-              {t('auth:alreadyHaveAccount')}
-            </Button>
+            />
           </View>
         )}
       </Formik>

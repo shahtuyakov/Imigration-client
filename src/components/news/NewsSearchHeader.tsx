@@ -16,13 +16,13 @@ function NewsSearchHeader({ onSearch, onRefresh }: NewsSearchHeaderProps) {
           placeholder="Search news"
           placeholderTextColor="#666"
         />
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Mic color="#666" size={20} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
-      <TouchableOpacity onPress={onRefresh}>
+      {/* <TouchableOpacity onPress={onRefresh}>
         <RotateCw color="#666" size={24} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity>
         <MoreHorizontal color="#666" size={24} />
       </TouchableOpacity>

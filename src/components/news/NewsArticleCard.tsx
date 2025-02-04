@@ -35,19 +35,19 @@ function NewsArticleCard({ article }: { article: NewsArticle }) {
           </Text>
           <View style={styles.metrics}>
             <View style={styles.metricItem}>
-              <Text>{article.metrics.likes}</Text>
+              <Text>{article.metrics.views}</Text>
             </View>
             <View style={styles.metricItem}>
-              <Text>{article.metrics.dislikes}</Text>
+              <Text>{article.metrics.shares}</Text>
             </View>
             <View style={styles.metricItem}>
               <Text>{article.metrics.comments}</Text>
             </View>
           </View>
         </View>
-        {article.thumbnail && (
+        {article.imageUrl && (
           <Image
-            source={{ uri: article.thumbnail }}
+            source={{ uri: article.imageUrl }}
             style={styles.thumbnail}
           />
         )}

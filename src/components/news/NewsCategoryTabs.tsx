@@ -9,7 +9,7 @@ function NewsCategoryTabs({
     selectedCategory: NewsCategory;
     onSelectCategory: (category: NewsCategory) => void;
   }) {
-    const categories: NewsCategory[] = ['for-you', 'local', 'top-stories'];
+    const categories: NewsCategory[] = ['for-you', 'latest', 'immigration', 'legal', 'policy'];
   
     return (
       <View style={styles.tabsContainer}>

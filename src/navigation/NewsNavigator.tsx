@@ -12,15 +12,9 @@ function NewsNavigator() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="NewsFeed" component={NewsFeedScreen} />
       <Stack.Screen 
-        name="NewsDetail" 
-        component={NewsDetailScreen}
-        options={{
-          headerShown: true,
-          headerBackTitle: 'Back',
-          title: 'News Detail'
-        }}
+        name="NewsFeedList"
+        component={NewsFeedScreen}
       />
     </Stack.Navigator>
   );

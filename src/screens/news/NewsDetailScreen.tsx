@@ -1,13 +1,11 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { NewsStackParamList } from '../../navigation/types';
+import { NewsStackParamList, NewsDetailScreenProps } from '../../navigation/types';
 import { useTheme } from '../../theme/hooks/useTheme';
 
-type Props = NativeStackScreenProps<NewsStackParamList, 'NewsDetail'>;
-
-function NewsDetailScreen({ route }: Props) {
-  const { articleId } = route.params;
+function NewsDetailScreen({ route }: NewsDetailScreenProps) {
+  const { newsId } = route.params;
   const theme = useTheme();
 
   return (
@@ -17,7 +15,7 @@ function NewsDetailScreen({ route }: Props) {
         { backgroundColor: theme.colors.background }
       ]}
     >
-      <Text>News Detail Screen - Article ID: {articleId}</Text>
+      <Text>News Detail Screen - Article ID: {newsId}</Text>
     </ScrollView>
   );
 }

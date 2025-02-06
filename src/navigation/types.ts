@@ -1,6 +1,9 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { NavigationProp, RouteProp } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -28,6 +31,7 @@ export type GuestTabsParamList = {
 
 export type BottomTabsParamList = {
   NewsFeed: undefined;
+  NewsDetail: { articleId: string };
   Cases: undefined;
   Lawyers: undefined;
   Profile: undefined;
@@ -44,4 +48,19 @@ export type MainTabParamList = {
   Lawyers: undefined;
   Profile: undefined;
 };
+
+export type NewsStackParamList = {
+  NewsFeed: undefined;
+  NewsDetail: {
+    articleId: string;
+  };
+  GuestNews: undefined;
+};
+
+export type NewsStackNavigationProp = NativeStackNavigationProp<NewsStackParamList>;
+
+export type NewsNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<BottomTabsParamList>,
+  NativeStackNavigationProp<RootStackParamList>
+>;
   

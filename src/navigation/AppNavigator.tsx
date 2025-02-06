@@ -12,6 +12,7 @@ import { GuestNewsScreen, NewsDetailScreen } from '../screens/news/index';
 import { CaseManagementScreen, LawyerListScreen, ProfileScreen } from '../screens/cases/index';
 import { LoadingScreen } from '../screens/LoadingScreen';
 import { RootStackParamList, GuestTabsParamList, AuthStackParamList, BottomTabsParamList } from './types';
+import NewsNavigator from './NewsNavigator';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const GuestTab = createBottomTabNavigator<GuestTabsParamList>();
@@ -41,8 +42,19 @@ function GuestTabNavigator() {
 
 function BottomTabNavigator() {
   return (
-    <BottomTab.Navigator>
-      <BottomTab.Screen name="NewsFeed" component={NewsFeedScreen} />
+    <BottomTab.Navigator
+      screenOptions={{
+        headerShown: true,
+      }}
+    >
+      <BottomTab.Screen 
+        name="NewsFeed" 
+        component={NewsNavigator}
+        options={{
+          title: 'News Feed',
+          headerShadowVisible: false,
+        }}
+      />
       <BottomTab.Screen name="Cases" component={CaseManagementScreen} />
       <BottomTab.Screen name="Lawyers" component={LawyerListScreen} />
       <BottomTab.Screen name="Profile" component={ProfileScreen} />

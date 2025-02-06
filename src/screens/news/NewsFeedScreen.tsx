@@ -27,7 +27,9 @@ export default function NewsFeedScreen() {
 
   const handleSearch = useCallback((query: string) => {
     const filtered = sampleNewsArticles.filter(article =>
-      article.title.toLowerCase().includes(query.toLowerCase())
+      article.headline.toLowerCase().includes(query.toLowerCase()) ||
+      article.contentSummary.toLowerCase().includes(query.toLowerCase()) ||
+      article.content.toLowerCase().includes(query.toLowerCase())
     );
     setArticles(filtered);
   }, []);

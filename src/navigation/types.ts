@@ -7,7 +7,9 @@ export interface RootStackParamList extends Record<string, object | undefined> {
   Loading: undefined;
   BottomTabs: undefined;
   Auth: undefined;
-  NewsDetail: { newsId: string };
+  NewsDetail: {
+    articleId: string;
+  };
 }
 
 export interface AuthStackParamList extends Record<string, object | undefined> {

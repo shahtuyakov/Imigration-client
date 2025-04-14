@@ -5,10 +5,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useAuthState } from '../hooks/useAuthState';
 import { AuthOptionsScreen, EmailLoginScreen, GoogleLoginScreen, AppleLoginScreen, VerifyEmailScreen } from '../screens/auth/index';
 import { NewsDetailScreen } from '../screens/news/index';
-import { CaseManagementScreen, LawyerListScreen, ProfileScreen } from '../screens/cases/index';
 import { LoadingScreen } from '../screens/LoadingScreen';
 import { RootStackParamList, AuthStackParamList, BottomTabsParamList } from './types';
 import NewsNavigator from './NewsNavigator';
+import CasesScreen from '../screens/case/CasesScreen';
+import LawyersScreen from '../screens/lawyer/LawyersScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
@@ -42,9 +44,9 @@ function BottomTabNavigator() {
           headerShadowVisible: false,
         }}
       />
-      <BottomTab.Screen name="Cases" component={CaseManagementScreen} />
-      <BottomTab.Screen name="Lawyers" component={LawyerListScreen} />
-      <BottomTab.Screen name="Profile" component={ProfileScreen} />
+      <BottomTab.Screen name="Cases" component={CasesScreen} />
+      <BottomTab.Screen name="Lawyers" component={LawyersScreen} />
+      <BottomTab.Screen name="Profile" component={LoginScreen} />
     </BottomTab.Navigator>
   );
 }

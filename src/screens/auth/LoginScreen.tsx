@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { googleSignIn, appleSignIn } from '../../store/slices/authSlice';
 import { AuthButton } from '../../components/auth/AuthButton';
 import { ErrorMessage } from '../../components/common/ErrorMessage';
@@ -8,7 +8,6 @@ import { useAuthError } from '../../hooks/useAuthError';
 import { useTheme } from '../../theme/hooks/useTheme';
 import { NavigationProp } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { RootState } from '../../store/types';
 import { useAuthState } from '../../hooks/useAuthState';
 
 interface LoginScreenProps {

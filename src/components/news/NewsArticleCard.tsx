@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NewsArticle } from '../../types/news';
 import type { NewsNavigationProp } from '../../navigation/types';
@@ -49,17 +49,6 @@ function NewsArticleCard({ article }: { article: NewsArticle }) {
           <Text style={styles.summary} numberOfLines={2}>
             {article.contentSummary}
           </Text>
-          {/* <View style={styles.metrics}>
-            <View style={styles.metricItem}>
-              <Text>{article.metrics.views} views</Text>
-            </View>
-            <View style={styles.metricItem}>
-              <Text>{article.metrics.shares} shares</Text>
-            </View>
-            <View style={styles.metricItem}>
-              <Text>{article.metrics.comments} comments</Text>
-            </View>
-          </View> */}
         </View>
         {article.imageUrl && (
           <Image

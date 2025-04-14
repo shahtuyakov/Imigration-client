@@ -1,6 +1,7 @@
 import { NewsArticle } from '../types/news';
 
-export const sampleNewsArticles: NewsArticle[] = [
+export const sampleNewsArticles: NewsArticle[] = 
+[
   {
     articleId: '1',
     headline: 'New Immigration Policy Changes Coming in 2024',
@@ -9,12 +10,12 @@ export const sampleNewsArticles: NewsArticle[] = [
     contentLength: 450,
     source: {
       name: 'Immigration Daily',
-      logo: 'https://example.com/immigration-daily-logo.png'
+      logo: 'https://picsum.photos/seed/picsum/200/300'
     },
     author: 'Sarah Johnson',
     publishedAt: '2024-01-15T10:30:00Z',
     updatedAt: '2024-01-15T14:30:00Z',
-    imageUrl: 'https://example.com/immigration-policy.jpg',
+    imageUrl: 'https://picsum.photos/seed/picsum/200/300',
     categories: ['policy', 'immigration'],
     tags: ['policy changes', '2024', 'visa processing'],
     region: 'United States',
@@ -33,12 +34,12 @@ export const sampleNewsArticles: NewsArticle[] = [
     contentLength: 850,
     source: {
       name: 'Legal Times',
-      logo: 'https://example.com/legal-times-logo.png'
+      logo: 'https://picsum.photos/seed/picsum/200/300'
     },
     author: 'Michael Chen',
     publishedAt: '2024-01-14T15:45:00Z',
     updatedAt: '2024-01-14T18:20:00Z',
-    imageUrl: 'https://example.com/supreme-court.jpg',
+    imageUrl: 'https://picsum.photos/seed/picsum/200/300',
     categories: ['legal', 'immigration'],
     tags: ['DACA', 'Supreme Court', 'legal ruling'],
     region: 'United States',
@@ -57,12 +58,12 @@ export const sampleNewsArticles: NewsArticle[] = [
     contentLength: 620,
     source: {
       name: 'Immigration News',
-      logo: 'https://example.com/immigration-news-logo.png'
+      logo: 'https://picsum.photos/seed/picsum/200/300'
     },
     author: 'David Martinez',
     publishedAt: '2024-01-13T09:15:00Z',
     updatedAt: '2024-01-13T11:30:00Z',
-    imageUrl: 'https://example.com/h1b-visa.jpg',
+    imageUrl: 'https://picsum.photos/seed/picsum/200/300',
     categories: ['immigration', 'policy'],
     tags: ['H-1B', 'visa cap', 'USCIS'],
     region: 'United States',
@@ -81,12 +82,12 @@ export const sampleNewsArticles: NewsArticle[] = [
     contentLength: 580,
     source: {
       name: 'Canadian Immigration News',
-      logo: 'https://example.com/cin-logo.png'
+      logo: 'https://picsum.photos/seed/picsum/200/300'
     },
     author: 'Emma Thompson',
     publishedAt: '2024-01-12T14:00:00Z',
     updatedAt: '2024-01-12T16:45:00Z',
-    imageUrl: 'https://example.com/express-entry.jpg',
+    imageUrl: 'https://picsum.photos/seed/picsum/200/300',
     categories: ['immigration', 'for-you'],
     tags: ['Canada', 'Express Entry', 'CRS'],
     region: 'Canada',
@@ -105,12 +106,12 @@ export const sampleNewsArticles: NewsArticle[] = [
     contentLength: 730,
     source: {
       name: 'UK Immigration Portal',
-      logo: 'https://example.com/ukip-logo.png'
+      logo: 'https://picsum.photos/seed/picsum/200/300'
     },
     author: 'James Wilson',
     publishedAt: '2024-01-11T08:30:00Z',
     updatedAt: '2024-01-11T10:15:00Z',
-    imageUrl: 'https://example.com/uk-visa.jpg',
+    imageUrl: 'https://picsum.photos/seed/picsum/200/300',
     categories: ['policy', 'latest'],
     tags: ['UK', 'skilled worker', 'points-based system'],
     region: 'United Kingdom',
@@ -129,12 +130,12 @@ export const sampleNewsArticles: NewsArticle[] = [
     contentLength: 690,
     source: {
       name: 'Legal Immigration News',
-      logo: 'https://example.com/lin-logo.png'
+      logo: 'https://picsum.photos/seed/picsum/200/300'
     },
     author: 'Patricia Rodriguez',
     publishedAt: '2024-01-10T11:20:00Z',
     updatedAt: '2024-01-10T14:30:00Z',
-    imageUrl: 'https://example.com/immigration-court.jpg',
+    imageUrl: 'https://picsum.photos/seed/picsum/200/300',
     categories: ['legal', 'latest'],
     tags: ['immigration court', 'DOJ', 'backlog'],
     region: 'United States',
@@ -153,12 +154,12 @@ export const sampleNewsArticles: NewsArticle[] = [
     contentLength: 540,
     source: {
       name: 'Australian Migration Review',
-      logo: 'https://example.com/amr-logo.png'
+      logo: 'https://picsum.photos/seed/picsum/200/300'
     },
     author: 'Tom Anderson',
     publishedAt: '2024-01-09T03:45:00Z',
     updatedAt: '2024-01-09T05:30:00Z',
-    imageUrl: 'https://example.com/australia-regional.jpg',
+    imageUrl: 'https://picsum.photos/seed/picsum/200/300',
     categories: ['immigration', 'policy'],
     tags: ['Australia', 'regional migration', 'skilled migration'],
     region: 'Australia',
@@ -177,12 +178,12 @@ export const sampleNewsArticles: NewsArticle[] = [
     contentLength: 780,
     source: {
       name: 'Tech Immigration Today',
-      logo: 'https://example.com/tit-logo.png'
+      logo: 'https://picsum.photos/seed/picsum/200/300'
     },
     author: 'Rachel Kim',
     publishedAt: '2024-01-08T16:00:00Z',
     updatedAt: '2024-01-08T18:20:00Z',
-    imageUrl: 'https://example.com/tech-immigration.jpg',
+    imageUrl: 'https://picsum.photos/seed/picsum/200/300',
     categories: ['policy', 'for-you'],
     tags: ['tech industry', 'immigration reform', 'skilled workers'],
     region: 'United States',

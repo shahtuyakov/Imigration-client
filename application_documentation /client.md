@@ -52,7 +52,7 @@ Common Screens:
 - Terms & Privacy Policy - user can view the terms and privacy policy
 - App Tutorial/Onboarding Screens - user can view the app tutorial and onboarding screens
 
-Each screen should follow iOS design guidelines and support both light and dark modes. The documentation also mentions that the app should have a clean, professional aesthetic with intuitive navigation and accessibility compliance.
+Each screen should follow iOS and Android design guidelines and support both light and dark modes. The documentation also mentions that the app should have a clean, professional aesthetic with intuitive navigation and accessibility compliance.
 
 Project Architecture & Structure
 src/
